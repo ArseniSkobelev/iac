@@ -50,7 +50,7 @@ echo $INFO"[Step 3/5 | Container runtime] Installing Containerd.."
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --batch --yes --dearmour -o /etc/apt/trusted.gpg.d/docker.gpg >> /dev/null
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" --yes >> /dev/null
 
-sudo apt-get update >> /dev/null
+sudo apt-get -qq update >> /dev/null
 sudo apt-get install -y containerd.io >> /dev/null
 
 containerd config default | sudo tee /etc/containerd/config.toml >/dev/null 2>&1
@@ -70,7 +70,7 @@ echo $INFO"[Step 4/5 | Kubernetes] Installing K8s tooling"
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --batch --yes --dearmour -o /etc/apt/trusted.gpg.d/kubernetes-xenial.gpg >> /dev/null
 sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main" --yes >> /dev/null
 
-sudo apt-get update >> /dev/null
+sudo apt-get -qq update >> /dev/null
 sudo apt-get install -y kubelet kubeadm kubectl >> /dev/null
 sudo apt-mark hold kubelet kubeadm kubectl >> /dev/null
 
